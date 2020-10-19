@@ -7,18 +7,83 @@
     <groupId>groupId</groupId>
     <artifactId>ValeriyaMakhnovets_LevelUp</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <!-- project settings -->
+        <java.source.version>1.8</java.source.version>
+        <java.target.version>1.8</java.target.version>
+        <project.encoding>UTF-8</project.encoding>
+
+        <!-- dependencies -->
+        <junit.version>5.7.0</junit.version>
+        <calculator.version>1.0</calculator.version>
+
+        <!-- plugins -->
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>${java.source.version}</source>
+                    <target>${java.target.version}</target>
+                    <encoding>${project.encoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <!-- allTests -->
+                    <includes>**/*</includes>
+                    <!--sum and mult tests-->
+                    <!--<groups>sumAndMult</groups>-->
+                    <!-- sub and div tests -->
+                    <!-- <groups>subAndDiv</groups>-->
+                    <!-- trigonometry tests -->
+                    <!-- <groups>trigonometry</groups>-->
+                    <!-- else -->
+                    <!--<includes>**/*.java</includes>
+                    <excludedGroups>sumAndMult,subAndDiv,trigonometry</excludedGroups>-->
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>ru.leveup.qa.at</groupId>
+            <artifactId>calculator</artifactId>
+            <version>${calculator.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/homework_5/calculator-${calculator.version}.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 
 </project>
