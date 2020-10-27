@@ -11,6 +11,13 @@ public class DinnerWithTwoDish implements CookDinner {
         this.dishTwo = dishTwo;
     }
 
+    public Dish getDishOne() {
+        return dishOne;
+    }
+
+    public Dish getDishTwo() {
+        return dishTwo;
+    }
 
     @Override
     public void cook() {
