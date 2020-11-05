@@ -6,6 +6,8 @@ import homework_7.pageObject.MailLoginStartPage;
 import homework_7.pageObject.MailOpenLetterPage;
 import homework_7.pageObject.MailWriteLetterPage;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -14,12 +16,9 @@ import javax.swing.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Task2Test extends BaseTest {
-    private String address = login;
-    private String subject = "Тест";
-    private String letter = "blabla";
-
-    @Test
-    public void test2Test() {
+    @ParameterizedTest()
+    @MethodSource("homework_7.task_2.Task2DataProvider#letterData")
+    public void task2Test(String address,String subject,String letter){
         //Войти в почту
         MailHomePage homePage = new MailHomePage(driver);
         homePage.open();

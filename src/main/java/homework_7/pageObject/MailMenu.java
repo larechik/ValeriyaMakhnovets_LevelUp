@@ -4,14 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
-public abstract class MailMenu {
+public class MailMenu {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
@@ -43,76 +42,80 @@ public abstract class MailMenu {
 
     public MailMenu(WebDriver driver) {
         this.driver = driver;
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 60);
         PageFactory.initElements(driver, this);
     }
 
 
     public MailWriteLetterPage writeLetter() {
-        /*try {
+        try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
-        wait.until(elementToBeClickable(writeLetterButton));
+        }
+        wait.until(ExpectedConditions.elementToBeClickable(writeLetterButton));
         writeLetterButton.click();
         return new MailWriteLetterPage(driver);
     }
 
     public MailSavedLetterListPage goToSaveLetter() {
-        wait.until(elementToBeClickable(saveLetterButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(saveLetterButton)).click();
         return new MailSavedLetterListPage(driver);
     }
 
     public MailLoginStartPage goToSendLetter() {
-        wait.until(elementToBeClickable(sendLetterButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(sendLetterButton)).click();
         return new MailLoginStartPage(driver);
     }
 
     public MailLoginStartPage goToTestFolder() {
-        /*try {
+        try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
-        wait.until(elementToBeClickable(testFolderButton)).click();
+        }
+        wait.until(ExpectedConditions.elementToBeClickable(testFolderButton)).click();
         return new MailLoginStartPage(driver);
     }
 
     public MailInputLatterPage goToInputLetter() {
-        wait.until(elementToBeClickable(inputLetterButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(inputLetterButton)).click();
         return new MailInputLatterPage(driver);
     }
 
     public MailLoginStartPage goToTrash() {
-        wait.until(elementToBeClickable(trashButton)).click();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        wait.until(ExpectedConditions.elementToBeClickable(trashButton)).click();
         return new MailLoginStartPage(driver);
     }
 
     public String getAddressToFromListLetter(int number) {
-        /*try {
+        try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
-        wait.until(elementToBeClickable(addressToList.get(number - 1)));
+        }
+        wait.until(ExpectedConditions.elementToBeClickable(addressToList.get(number - 1)));
         return addressToList.get(number - 1).getAttribute("title");
     }
 
     public MailOpenLetterPage openLetter(int number) {
-        /*try {
+        try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
-        wait.until(elementToBeClickable(addressToList.get(number - 1)));
+        }
+        wait.until(ExpectedConditions.elementToBeClickable(addressToList.get(number - 1)));
         addressToList.get(number - 1).click();
         return new MailOpenLetterPage(driver);
     }
 
     public MailHomePage logout() {
-        wait.until(elementToBeClickable(logoutButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(logoutButton)).click();
         return new MailHomePage(driver);
     }
 

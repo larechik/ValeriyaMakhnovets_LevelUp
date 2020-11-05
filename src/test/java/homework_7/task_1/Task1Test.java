@@ -3,16 +3,16 @@ package homework_7.task_1;
 import homework_7.base.BaseTest;
 import homework_7.pageObject.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Task1Test extends BaseTest {
-    private String address="makhnovets1995@inbox.ru";
-    private String subject="bla";
-    private String letter="blabla";
 
-    @Test
-    public void task1Test(){
+    @ParameterizedTest()
+    @MethodSource("homework_7.task_1.Task1DataProvider#letterData")
+    public void task1Test(String address,String subject,String letter){
         //Войти в почту
         MailHomePage homePage = new MailHomePage(driver);
         homePage.open();

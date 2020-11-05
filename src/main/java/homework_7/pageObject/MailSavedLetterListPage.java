@@ -18,8 +18,6 @@ public class MailSavedLetterListPage extends MailMenu {
 
     public MailSavedLetterListPage(WebDriver driver) {
         super(driver);
-        wait = new WebDriverWait(driver, 30);
-
     }
 
     public String getEmptyFieldMessage() {
